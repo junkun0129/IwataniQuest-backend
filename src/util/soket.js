@@ -3,6 +3,7 @@ module.exports = (http) => {
   const soketIO = require("socket.io")(http, {
     cors: {
       origin: config.frontURL,
+      methods: ["GET", "POST"],
     },
   });
 
