@@ -12,4 +12,5 @@ module.exports = {
   databaseURL: process.env.MONGODB_URL,
   salt: Number(process.env.SALT),
   jwtSecret: process.env.JWT_SECRET,
+  frontURL: process.env.FRONT_URL,
 };
