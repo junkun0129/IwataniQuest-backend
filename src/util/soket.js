@@ -1,4 +1,5 @@
 const config = require("../config");
+const walkingPerson = [];
 module.exports = (http) => {
   const soketIO = require("socket.io")(http, {
     cors: {
@@ -30,6 +31,24 @@ module.exports = (http) => {
     socket.on("save", (data) => {
       console.log(data, "rthis");
       socket.emit("save", "save");
+    });
+
+    socket.on("walk", (data) => {
+      //   console.log(data);
+
+      const isLogin = walkingPerson.find((each) => each.email === data.email);
+      if (!isLogin) {
+        walkingPerson.push(data);
+      } else {
+        console.log("there si");
+        walkingPerson.map((element) => {
+          //   console.log(element.email, data.email);
+          console.log(data.x, element.x);
+          return 5;
+        });
+      }
+
+      console.log(walkingPerson);
     });
   });
 };
