@@ -1,5 +1,7 @@
 const config = require("../config");
-const walkingPerson = [];
+const walkingPerson = [
+  { name: "iwatani", email: "penpen@jum.com", x: 2000, y: 1000 },
+];
 module.exports = (http) => {
   const soketIO = require("socket.io")(http, {
     cors: {
@@ -40,15 +42,20 @@ module.exports = (http) => {
       if (!isLogin) {
         walkingPerson.push(data);
       } else {
-        console.log("there si");
-        walkingPerson.map((element) => {
-          //   console.log(element.email, data.email);
-          console.log(data.x, element.x);
-          return 5;
-        });
+        // console.log();
+        const index = walkingPerson
+          .map((each) => each.email)
+          .indexOf(data.email);
+        // console.log(index);
+        walkingPerson.splice(index, index, data);
       }
 
       console.log(walkingPerson);
     });
+
+    setInterval(() => {
+      // console.log(walkingPerson);
+      socket.emit("pedestrians", walkingPerson);
+    }, 17);
   });
 };
