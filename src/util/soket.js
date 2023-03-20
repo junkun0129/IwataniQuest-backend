@@ -35,6 +35,15 @@ module.exports = (http) => {
       socket.emit("save", "save");
     });
 
+    socket.on("textOpen", (data) => {
+      socket.emit("textOpentoField", "open");
+    });
+
+    socket.on("textSubmit", (data) => {
+      console.log(data);
+      socket.emit("textAppear", data);
+    });
+
     socket.on("walk", (data) => {
       //   console.log(data);
 
