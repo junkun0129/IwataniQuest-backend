@@ -36,7 +36,8 @@ module.exports = (http) => {
     });
 
     socket.on("textOpen", (data) => {
-      socket.emit("textOpentoField", "open");
+      if (data === "open") socket.emit("textOpentoField", "open");
+      if (data === "close") socket.emit("textOpentoField", "close");
     });
 
     socket.on("textSubmit", (data) => {
