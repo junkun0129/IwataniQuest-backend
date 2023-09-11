@@ -11,15 +11,12 @@ module.exports = (http) => {
   });
 
   soketIO.on("connection", (socket) => {
-    // console.log(">>>>>>>", socket, ">>>>>>>>>")
-
-    socket.on("oi", (data) => {
-      console.log(data, "ikuzoooooooooooooo");
-    });
+    socket.on("oi", (data) => {});
 
     socket.on("encount", (data) => {
       if (data === "hit") {
         socket.emit("screenSwitch", "hit");
+        console.log("spot 1");
       }
     });
 
@@ -28,6 +25,11 @@ module.exports = (http) => {
         socket.emit("backSwitch", "backback");
         console.log("kaettekitaOoo");
       }
+    });
+
+    socket.on("lose", (data) => {
+      socket.emit("lose", "toGamePanel");
+      socket.emit("lose", "toReact");
     });
 
     socket.on("save", (data) => {
@@ -60,7 +62,7 @@ module.exports = (http) => {
         walkingPerson.splice(index, index, data);
       }
 
-      console.log(walkingPerson);
+      // console.log(walkingPerson);
     });
 
     setInterval(() => {
