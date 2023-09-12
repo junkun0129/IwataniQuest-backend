@@ -1,6 +1,4 @@
-const mongoose = require("mongoose")
-const {Schema, model, SchemaTypes} = mongoose
+const mongoose = require("mongoose");
+const { Schema, model, SchemaTypes } = mongoose;
 
-const inventorySchema = new Schema({
-    
-})
+const inventorySchema = new Schema({});
