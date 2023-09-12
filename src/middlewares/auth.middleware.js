@@ -20,15 +20,19 @@ const signUp = async (data) => {
   const firststatus = {
     level: 1,
     exp: 0,
+    requireExp: 10,
     hp: 20,
     maxmumHp: 20,
     at: 5,
+    x: 1524,
+    y: 1739,
+    mapState: 5,
   };
 
   const userstatus = new Status(firststatus);
 
   await userstatus.save();
-
+  console.log("userstatus");
   //create user
   user = new User({
     name,
@@ -62,9 +66,8 @@ const signIn = async (email, password) => {
   }
 
   const isValid = await bcrypt.compare(password, user.password);
-
+  console.log(user.status.x);
   const token = JWT.sign({ id: user._id }, jwtSecret);
-
   if (isValid) {
     return (data = {
       userId: user._id,
